@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locked Out in Ottawa? | Barré à Ottawa?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–navy: #0f1f38;
+–navy-mid: #162d50;
+–gold: #c9993a;
+–gold-light: #e8b84b;
+–cream: #f9f6f0;
+–white: #ffffff;
+–gray: #6b7280;
+–light-gray: #f3f4f6;
+–green: #22c55e;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–cream);
+color: var(–navy);
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* LANG TOGGLE */
+.lang-bar {
+background: var(–navy);
+display: flex;
+justify-content: flex-end;
+padding: 8px 24px;
+gap: 4px;
+}
+.lang-btn {
+background: none;
+border: 1px solid rgba(255,255,255,0.25);
+color: rgba(255,255,255,0.6);
+padding: 4px 12px;
+border-radius: 4px;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 12px;
+cursor: pointer;
+transition: all 0.2s;
+letter-spacing: 0.05em;
+}
+.lang-btn.active {
+background: var(–gold);
+border-color: var(–gold);
+color: var(–white);
+}
+
+/* HERO */
+.hero {
+background: var(–navy);
+position: relative;
+overflow: hidden;
+padding: 60px 24px 70px;
+text-align: center;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,153,58,0.12) 0%, transparent 70%),
+radial-gradient(ellipse 40% 60% at 80% 100%, rgba(201,153,58,0.06) 0%, transparent 60%);
+pointer-events: none;
+}
+
+.hero-badge {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: rgba(201,153,58,0.15);
+border: 1px solid rgba(201,153,58,0.35);
+border-radius: 100px;
+padding: 6px 16px;
+font-size: 12px;
+font-weight: 600;
+color: var(–gold-light);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-bottom: 28px;
+animation: fadeUp 0.5s ease both;
+}
+
+.badge-dot {
+width: 7px;
+height: 7px;
+background: var(–green);
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 1; transform: scale(1); }
+50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hero h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(2.4rem, 7vw, 4rem);
+font-weight: 900;
+color: var(–white);
+line-height: 1.1;
+margin-bottom: 16px;
+animation: fadeUp 0.5s 0.1s ease both;
+}
+
+.hero h1 span {
+color: var(–gold-light);
+}
+
+.hero-sub {
+font-size: clamp(1rem, 2.5vw, 1.2rem);
+color: rgba(255,255,255,0.65);
+font-weight: 300;
+max-width: 480px;
+margin: 0 auto 36px;
+line-height: 1.6;
+animation: fadeUp 0.5s 0.2s ease both;
+}
+
+.cta-block {
+animation: fadeUp 0.5s 0.3s ease both;
+}
+
+.phone-link {
+display: inline-flex;
+align-items: center;
+gap: 12px;
+background: var(–gold);
+color: var(–white);
+text-decoration: none;
+padding: 18px 36px;
+border-radius: 8px;
+font-size: 1.5rem;
+font-weight: 700;
+letter-spacing: 0.02em;
+transition: background 0.2s, transform 0.15s;
+box-shadow: 0 8px 32px rgba(201,153,58,0.35);
+}
+
+.phone-link:hover {
+background: var(–gold-light);
+transform: translateY(-2px);
+}
+
+.phone-icon {
+font-size: 1.2rem;
+animation: ring 3s 2s ease infinite;
+}
+
+@keyframes ring {
+0%, 90%, 100% { transform: rotate(0deg); }
+92% { transform: rotate(15deg); }
+94% { transform: rotate(-15deg); }
+96% { transform: rotate(10deg); }
+98% { transform: rotate(-5deg); }
+}
+
+.cta-note {
+margin-top: 14px;
+font-size: 13px;
+color: rgba(255,255,255,0.45);
+font-weight: 300;
+}
+
+/* TRUST STRIP */
+.trust-strip {
+background: var(–white);
+border-bottom: 1px solid #e5e7eb;
+padding: 20px 24px;
+display: flex;
+justify-content: center;
+gap: clamp(20px, 5vw, 60px);
+flex-wrap: wrap;
+animation: fadeUp 0.5s 0.4s ease both;
+}
+
+.trust-item {
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 13px;
+font-weight: 500;
+color: var(–navy);
+}
+
+.trust-item .icon {
+font-size: 18px;
+}
+
+/* HOW IT WORKS */
+.section {
+padding: 64px 24px;
+max-width: 680px;
+margin: 0 auto;
+}
+
+.section-label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 12px;
+}
+
+.section h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(1.6rem, 4vw, 2.2rem);
+font-weight: 700;
+color: var(–navy);
+margin-bottom: 40px;
+line-height: 1.25;
+}
+
+.steps {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+.step {
+display: flex;
+gap: 20px;
+position: relative;
+}
+
+.step:not(:last-child)::after {
+content: ‘’;
+position: absolute;
+left: 19px;
+top: 44px;
+bottom: -8px;
+width: 2px;
+background: linear-gradient(to bottom, var(–gold), transparent);
+opacity: 0.3;
+}
+
+.step-num {
+flex-shrink: 0;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: var(–navy);
+color: var(–gold-light);
+font-weight: 700;
+font-size: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px solid rgba(201,153,58,0.3);
+margin-top: 2px;
+}
+
+.step-body {
+padding-bottom: 32px;
+}
+
+.step-body h3 {
+font-weight: 600;
+font-size: 1rem;
+color: var(–navy);
+margin-bottom: 4px;
+}
+
+.step-body p {
+font-size: 0.9rem;
+color: var(–gray);
+line-height: 1.6;
+font-weight: 300;
+}
+
+/* SERVICES */
+.services-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+.services-grid { grid-template-columns: 1fr; }
+}
+
+.service-card {
+background: var(–white);
+border: 1px solid #e5e7eb;
+border-radius: 10px;
+padding: 20px;
+transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.service-card:hover {
+box-shadow: 0 4px 20px rgba(15,31,56,0.08);
+border-color: rgba(201,153,58,0.4);
+}
+
+.service-icon {
+font-size: 1.6rem;
+margin-bottom: 10px;
+}
+
+.service-card h3 {
+font-weight: 600;
+font-size: 0.95rem;
+color: var(–navy);
+margin-bottom: 4px;
+}
+
+.service-card p {
+font-size: 0.82rem;
+color: var(–gray);
+line-height: 1.5;
+font-weight: 300;
+}
+
+/* BOTTOM CTA */
+.bottom-cta {
+background: var(–navy);
+text-align: center;
+padding: 56px 24px;
+position: relative;
+overflow: hidden;
+}
+
+.bottom-cta::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(201,153,58,0.1) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.bottom-cta h2 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(1.6rem, 4vw, 2.2rem);
+color: var(–white);
+margin-bottom: 8px;
+font-weight: 700;
+}
+
+.bottom-cta p {
+color: rgba(255,255,255,0.55);
+font-size: 0.95rem;
+margin-bottom: 28px;
+font-weight: 300;
+}
+
+/* FOOTER */
+footer {
+background: #080f1c;
+text-align: center;
+padding: 20px 24px;
+font-size: 12px;
+color: rgba(255,255,255,0.25);
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(18px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Divider */
+.divider {
+height: 1px;
+background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+margin: 0 24px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- LANG BAR -->
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+  <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">FR</button>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    <span data-en="Available 24/7 · Ottawa & Surrounding Area" data-fr="Disponible 24h/24 · Ottawa et région"></span>
+  </div>
+  <h1 data-en="Locked Out?" data-fr="Barré dehors&nbsp;?"><span data-en="Locked Out?" data-fr="Barré dehors&nbsp;?"></span></h1>
+  <p class="hero-sub" data-en="We dispatch a licensed locksmith to your location fast. Call now — a real person takes your info immediately." data-fr="Nous envoyons un serrurier certifié à votre emplacement rapidement. Appelez maintenant — quelqu'un prend vos informations immédiatement."></p>
+  <div class="cta-block">
+    <a href="tel:+16135550000" class="phone-link">
+      <span class="phone-icon">📞</span>
+      <span>(613) 555-0000</span>
+    </a>
+    <p class="cta-note" data-en="No robots. Fast dispatch. Flat-rate pricing." data-fr="Pas de robots. Envoi rapide. Tarif fixe."></p>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+
+<div class="trust-strip">
+  <div class="trust-item"><span class="icon">✓</span> <span data-en="Licensed & Insured" data-fr="Certifié & assuré"></span></div>
+  <div class="trust-item"><span class="icon">⚡</span> <span data-en="Fast Response" data-fr="Réponse rapide"></span></div>
+  <div class="trust-item"><span class="icon">💲</span> <span data-en="Upfront Pricing" data-fr="Prix transparent"></span></div>
+  <div class="trust-item"><span class="icon">📍</span> <span data-en="Ottawa & Area" data-fr="Ottawa et région"></span></div>
+</div>
+
+<!-- HOW IT WORKS -->
+
+<section class="section">
+  <p class="section-label" data-en="How It Works" data-fr="Comment ça marche"></p>
+  <h2 data-en="Help in 3 simple steps" data-fr="De l'aide en 3 étapes simples"></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3 data-en="Call the number above" data-fr="Appelez le numéro ci-dessus"></h3>
+        <p data-en="You'll be connected instantly. Tell us where you are and what happened." data-fr="Vous serez connecté immédiatement. Dites-nous où vous êtes et ce qui s'est passé."></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3 data-en="We confirm your details" data-fr="Nous confirmons vos informations"></h3>
+        <p data-en="Location, type of lockout, and any special circumstances. Takes about 60 seconds." data-fr="Emplacement, type de situation, et circonstances particulières. Environ 60 secondes."></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3 data-en="A locksmith is dispatched" data-fr="Un serrurier est envoyé"></h3>
+        <p data-en="A licensed technician heads to you with an ETA. No surprises on the bill." data-fr="Un technicien certifié se dirige vers vous avec une heure d'arrivée estimée. Pas de surprises sur la facture."></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+
+<section class="section">
+  <p class="section-label" data-en="What We Handle" data-fr="Ce que nous gérons"></p>
+  <h2 data-en="Any lockout, any time" data-fr="Toute situation, à toute heure"></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3 data-en="Home Lockout" data-fr="Domicile"></h3>
+      <p data-en="Locked out of your house or apartment." data-fr="Barré hors de votre maison ou appartement."></p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚗</div>
+      <h3 data-en="Car Lockout" data-fr="Voiture"></h3>
+      <p data-en="Keys in the car, broken fob, or frozen lock." data-fr="Clés dans la voiture, clé cassée ou serrure gelée."></p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <h3 data-en="Commercial" data-fr="Commercial"></h3>
+      <p data-en="Office, storefront, or building access." data-fr="Bureau, commerce ou immeuble."></p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <h3 data-en="Lock Change" data-fr="Changement de serrure"></h3>
+      <p data-en="Lost keys or need to rekey after a move." data-fr="Clés perdues ou remplacement après déménagement."></p>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+
+<div class="bottom-cta">
+  <h2 data-en="Still outside?" data-fr="Toujours dehors&nbsp;?"></h2>
+  <p data-en="Don't wait. One call gets you sorted." data-fr="N'attendez pas. Un appel suffit."></p>
+  <a href="tel:+16135550000" class="phone-link">
+    <span class="phone-icon">📞</span>
+    <span>(613) 555-0000</span>
+  </a>
+</div>
+
+<footer>
+  <span data-en="© 2026 Ottawa Emergency Locksmith. Licensed & Insured. Serving Ottawa, Gatineau & surrounding areas." data-fr="© 2026 Serrurier d'urgence Ottawa. Certifié & assuré. Service à Ottawa, Gatineau et région."></span>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.innerHTML = el.getAttribute('data-' + lang);
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.documentElement.lang = lang;
+  }
+
+  // Init
+  setLang('en');
+</script>
+
+</body>
+</html>
